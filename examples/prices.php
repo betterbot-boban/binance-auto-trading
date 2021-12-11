@@ -2,12 +2,9 @@
 
 require_once('../classes/Binance.php');
 
-/**
- * @var array
- */
-$prices = (new Binance)->prices();
+$binance = new Binance;
 
-printf("%s", json_encode($prices, JSON_PRETTY_PRINT));
+printf("%s\n", json_encode($binance->prices(), JSON_PRETTY_PRINT));
 
 // [
 //     {
@@ -18,9 +15,12 @@ printf("%s", json_encode($prices, JSON_PRETTY_PRINT));
 //         "symbol": "LTCBTC",
 //         "price": "0.00319100"
 //     },
-//     {
-//         "symbol": "BNBBTC",
-//         "price": "0.01150800"
-//     },
 //     ...
 // ]
+
+printf("%s\n", json_encode($binance->prices('BTCUSDC'), JSON_PRETTY_PRINT));
+
+// {
+//     "symbol": "BTCUSDC",
+//     "price": "48550.63000000"
+// }

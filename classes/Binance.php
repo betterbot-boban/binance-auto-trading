@@ -12,8 +12,16 @@ class Binance
         // 
     }
 
-    public function prices()
+    /**
+     * @param string $simbol
+     * @return array
+     */
+    public function prices(?string $symbol = null)
     {
-        return Http::get('/ticker/price');
+        $url = empty($symbol)
+                    ? "/ticker/price"
+                    : "/ticker/price?symbol={$symbol}";
+
+        return Http::get($url);
     }
 }
