@@ -8,20 +8,26 @@ use App\Classes\Http;
 
 class Binance
 {
+    /**
+     * @var App\Classes\Http
+     */
+    private $http;
+
     function __construct() {
-        // 
+        $this->http = new Http;
     }
 
     /**
      * @param string $simbol
      * @return array
      */
-    public function prices(?string $symbol = null)
+    public function prices(string $symbol = null)
     {
-        $url = empty($symbol)
-                    ? "/ticker/price"
-                    : "/ticker/price?symbol={$symbol}";
+        return $this->http->get('/ticker/price', empty($symbol) ? [] : ['symbol' => $symbol]);
+    }
 
-        return Http::get($url);
+    public function balances()
+    {
+        return $this->http->get('/account', [], true);
     }
 }
