@@ -2,7 +2,7 @@
 
 require_once('../classes/Binance.php');
 
-printf("%s\n", json_encode((new Binance)->balances(), JSON_PRETTY_PRINT));
+printf("%s\n", json_encode((new Binance)->account(), JSON_PRETTY_PRINT));
 
 // {
 //     "makerCommission": 10,
